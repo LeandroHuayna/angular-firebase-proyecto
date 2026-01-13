@@ -66,6 +66,10 @@ export class Usuario {
         rol: 'usuario',
         fecha_registro: new Date(),
       });
+
     });
+  }
+  cambiarRol(uid: string, rol: string) {
+    return this.firestore.collection('Usuarios').doc(uid).update({ rol });
   }
 }

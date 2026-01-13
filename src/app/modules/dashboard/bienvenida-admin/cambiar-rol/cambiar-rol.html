@@ -1,1 +1,24 @@
-<p>cambiar-rol works!</p>
+<div class="container">
+  <h2>Cambiar Rol de Usuarios</h2>
+
+  <table class="tabla-usuarios">
+    <thead>
+      <tr>
+        <th>Nombre / Email</th>
+        <th>Rol Actual</th>
+        <th>Cambiar Rol</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of usuarios">
+        <td>{{ u.nombre || u.email }}</td>
+        <td>{{ u.rol }}</td>
+        <td>
+          <select [ngModel]="u.rol" (ngModelChange)="cambiarRol(u.uid, $event)">
+            <option *ngFor="let r of rolesDisponibles" [value]="r">{{ r }}</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -20,9 +20,7 @@ export class Login {
       .login(this.email, this.password)
       .then((cred) => {                           //resiva la verificacion de login del servicio auth
         const uid = cred.user?.uid || '';               //muestra la uid
-        debugger;
         this.authService.ObtenerUsuario(uid).subscribe((usuario:any) => {
-          debugger;
           console.log('Usuario', usuario);
           if(usuario.rol === "admin") {               //busqueda de rol, muy importante
             this.Router.navigate(['/admin']);

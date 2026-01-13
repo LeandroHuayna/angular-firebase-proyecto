@@ -6,6 +6,7 @@ import { CambiarRol } from './bienvenida-admin/cambiar-rol/cambiar-rol';
 import { DesactivarUsuario } from './bienvenida-admin/desactivar-usuario/desactivar-usuario';
 import { RouterModule } from '@angular/router';
 import { GestionarUsuarios } from './bienvenida-admin/gestionar-usuarios/gestionar-usuarios';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,11 +16,13 @@ import { GestionarUsuarios } from './bienvenida-admin/gestionar-usuarios/gestion
     BienvenidaAdmin,
     CambiarRol,
     DesactivarUsuario,
-    GestionarUsuarios
+    
   ],
   imports: [
     CommonModule,
-    RouterModule
+    FormsModule, 
+    RouterModule,
+    GestionarUsuarios
   ]
 })
 export class DashboardModule { }

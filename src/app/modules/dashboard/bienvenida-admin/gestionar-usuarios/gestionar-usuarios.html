@@ -1,1 +1,58 @@
-<p>gestionar-usuarios works!</p>
+<h2>Gestión de Usuarios</h2>
+
+<!-- ➕ AGREGAR USUARIO -->
+<div style="margin-bottom: 20px;">
+  <input
+    type="email"
+    placeholder="Email del usuario"
+    [(ngModel)]="nuevoEmail"
+  />
+
+  <select [(ngModel)]="nuevoRol">
+    <option value="usuario">Usuario</option>
+    <option value="admin">Admin</option>
+  </select>
+
+  <button (click)="agregarUsuario()">Agregar</button>
+</div>
+
+<hr />
+
+<!-- 📋 LISTA DE USUARIOS -->
+<table border="1" width="100%">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Rol</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let u of usuarios">
+      <td>{{ u.email }}</td>
+      <td>{{ u.rol }}</td>
+      <td>
+        <button (click)="editarUsuario(u)">Editar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ✏️ EDITAR USUARIO -->
+<div *ngIf="usuarioEditando" style="margin-top: 20px;">
+  <h3>Editar Usuario</h3>
+
+  <input
+    type="email"
+    [(ngModel)]="usuarioEditando.email"
+  />
+
+  <select [(ngModel)]="usuarioEditando.rol">
+    <option value="usuario">Usuario</option>
+    <option value="admin">Admin</option>
+  </select>
+
+  <button (click)="guardarEdicion()">Guardar</button>
+  <button (click)="cancelarEdicion()">Cancelar</button>
+</div>

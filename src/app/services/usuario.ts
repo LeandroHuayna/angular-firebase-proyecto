@@ -1,5 +1,6 @@
 import { Injectable, runInInjectionContext, Injector } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,7 +11,8 @@ export class Usuario {
     private injector: Injector,
   ) { }
 
-  crearUsuario(uid: string, email: String) {
+  // Crear usuario desde registro Auth
+  crearUsuario(uid: string, email: string) {
     return runInInjectionContext(this.injector, () => {
       return this.firestore.collection('Usuarios').doc(uid).set({
         email,
@@ -19,37 +21,51 @@ export class Usuario {
       });
     });
   }
+
+  // Obtener usuario por uid
   obtenerUsuario(uid: string) {
     return runInInjectionContext(this.injector, () => {
-      return this.firestore.collection('Usuarios').doc(uid).valueChanges();     //nombre de la colecion de usuarios XD muy importante
-      // valueChanges mucho mejor que get, mas dinamico
-    })
+      return this.firestore.collection('Usuarios').doc(uid).valueChanges();
+    });
   }
-  // 🔽 NUEVO: obtener TODOS los usuarios
+
+  // Obtener todos los usuarios
   obtenerUsuarios() {
     return runInInjectionContext(this.injector, () => {
       return this.firestore.collection('Usuarios').valueChanges({ idField: 'uid' });
     });
   }
 
-  // 🔽 NUEVO: actualizar usuario
+  // Actualizar datos de usuario
   actualizarUsuario(uid: string, data: any) {
     return runInInjectionContext(this.injector, () => {
       return this.firestore.collection('Usuarios').doc(uid).update(data);
     });
   }
 
-  // 🔽 NUEVO: agregar usuario manual (admin)
-  agregarUsuario(email: string, rol: string) {
+  // Agregar usuario manual desde dashboard
+  agregarUsuario(
+    nombre: string,
+    email: string,
+    telefono: string,
+    tipoMembresia: string,
+    fechaInicio: Date,
+    fechaVencimiento: Date,
+    estadoPago: string
+  ) {
     const uid = this.firestore.createId();
     return runInInjectionContext(this.injector, () => {
       return this.firestore.collection('Usuarios').doc(uid).set({
+        nombre,
         email,
-        rol,
+        telefono,
+        tipo_membresia: tipoMembresia,
+        fecha_inicio: fechaInicio,
+        fecha_vencimiento: fechaVencimiento,
+        estado_pago: estadoPago,
+        rol: 'usuario',
         fecha_registro: new Date(),
       });
     });
   }
 }
-
-

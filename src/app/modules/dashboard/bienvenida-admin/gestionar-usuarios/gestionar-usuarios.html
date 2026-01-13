@@ -1,58 +1,142 @@
-<h2>Gestión de Usuarios</h2>
+<div class="crud-container">
 
-<!-- ➕ AGREGAR USUARIO -->
-<div style="margin-bottom: 20px;">
-  <input
-    type="email"
-    placeholder="Email del usuario"
-    [(ngModel)]="nuevoEmail"
-  />
+  <h2 class="title">Gestión de Usuarios</h2>
 
-  <select [(ngModel)]="nuevoRol">
-    <option value="usuario">Usuario</option>
-    <option value="admin">Admin</option>
-  </select>
+  <!-- ➕ FORMULARIO AGREGAR USUARIO -->
+  <div class="form-agregar-grid">
+    <div class="form-group">
+      <label>Nombre completo</label>
+      <input type="text" [(ngModel)]="nuevoNombre" placeholder="Nombre">
+    </div>
 
-  <button (click)="agregarUsuario()">Agregar</button>
-</div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="nuevoEmail" placeholder="Correo electrónico">
+    </div>
 
-<hr />
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input type="text" [(ngModel)]="nuevoTelefono" placeholder="Teléfono">
+    </div>
 
-<!-- 📋 LISTA DE USUARIOS -->
-<table border="1" width="100%">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Rol</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
+    <div class="form-group">
+      <label>Membresía</label>
+      <select [(ngModel)]="nuevoTipoMembresia">
+        <option value="mensual">Mensual</option>
+        <option value="trimestral">Trimestral</option>
+        <option value="anual">Anual</option>
+      </select>
+    </div>
 
-  <tbody>
-    <tr *ngFor="let u of usuarios">
-      <td>{{ u.email }}</td>
-      <td>{{ u.rol }}</td>
-      <td>
-        <button (click)="editarUsuario(u)">Editar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <div class="form-group">
+      <label>Fecha inicio</label>
+      <input type="date" [(ngModel)]="nuevoFechaInicio">
+    </div>
 
-<!-- ✏️ EDITAR USUARIO -->
-<div *ngIf="usuarioEditando" style="margin-top: 20px;">
-  <h3>Editar Usuario</h3>
+    <div class="form-group">
+      <label>Fecha vencimiento</label>
+      <input type="date" [(ngModel)]="nuevoFechaVencimiento">
+    </div>
 
-  <input
-    type="email"
-    [(ngModel)]="usuarioEditando.email"
-  />
+    <div class="form-group">
+      <label>Estado</label>
+      <select [(ngModel)]="nuevoEstadoPago">
+        <option value="activo">Activo</option>
+        <option value="moroso">Moroso</option>
+      </select>
+    </div>
 
-  <select [(ngModel)]="usuarioEditando.rol">
-    <option value="usuario">Usuario</option>
-    <option value="admin">Admin</option>
-  </select>
+    <div class="form-group full-width">
+      <button class="btn agregar-btn" (click)="agregarUsuario()">Agregar Usuario</button>
+    </div>
+  </div>
 
-  <button (click)="guardarEdicion()">Guardar</button>
-  <button (click)="cancelarEdicion()">Cancelar</button>
+  <!-- TABLA DE USUARIOS -->
+  <div class="table-container">
+    <table class="usuarios-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Membresía</th>
+          <th>Inicio</th>
+          <th>Vencimiento</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of usuarios">
+          <td>{{ u.nombre }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.telefono }}</td>
+          <td>{{ u.tipo_membresia }}</td>
+          <td>{{ u.fecha_inicio | date:'yyyy-MM-dd' }}</td>
+          <td>{{ u.fecha_vencimiento | date:'yyyy-MM-dd' }}</td>
+          <td>
+            <span [class.activo]="u.estado_pago==='activo'" 
+                  [class.moroso]="u.estado_pago==='moroso'">
+              {{ u.estado_pago }}
+            </span>
+          </td>
+          <td><button class="btn editar-btn" (click)="editarUsuario(u)">Editar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FORMULARIO EDITAR USUARIO -->
+  <div *ngIf="usuarioEditando" class="form-editar-grid">
+    <h3>Editar Usuario</h3>
+
+    <div class="form-group">
+      <label>Nombre completo</label>
+      <input type="text" [(ngModel)]="usuarioEditando.nombre">
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="usuarioEditando.email">
+    </div>
+
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input type="text" [(ngModel)]="usuarioEditando.telefono">
+    </div>
+
+    <div class="form-group">
+      <label>Membresía</label>
+      <select [(ngModel)]="usuarioEditando.tipo_membresia">
+        <option value="mensual">Mensual</option>
+        <option value="trimestral">Trimestral</option>
+        <option value="anual">Anual</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Fecha inicio</label>
+      <input type="date" [(ngModel)]="usuarioEditando.fecha_inicio">
+    </div>
+
+    <div class="form-group">
+      <label>Fecha vencimiento</label>
+      <input type="date" [(ngModel)]="usuarioEditando.fecha_vencimiento">
+    </div>
+
+    <div class="form-group">
+      <label>Estado</label>
+      <select [(ngModel)]="usuarioEditando.estado_pago">
+        <option value="activo">Activo</option>
+        <option value="moroso">Moroso</option>
+      </select>
+    </div>
+
+    <div class="form-group full-width editar-buttons">
+      <button class="btn guardar-btn" (click)="guardarEdicion()">Guardar</button>
+      <button class="btn cancelar-btn" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+
+  </div>
+
 </div>

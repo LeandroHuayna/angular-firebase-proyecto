@@ -1,0 +1,119 @@
+.crud-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #343a40;
+}
+
+/* FORMULARIOS CON GRID */
+.form-agregar-grid,
+.form-editar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Inputs y selects */
+.form-group input,
+.form-group select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Botones */
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.agregar-btn {
+  background-color: #198754;
+  color: white;
+}
+
+.agregar-btn:hover {
+  background-color: #157347;
+}
+
+.editar-btn {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.editar-btn:hover {
+  background-color: #0b5ed7;
+}
+
+.guardar-btn {
+  background-color: #198754;
+  color: white;
+  margin-right: 10px;
+}
+
+.guardar-btn:hover {
+  background-color: #157347;
+}
+
+.cancelar-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancelar-btn:hover {
+  background-color: #b02a37;
+}
+
+/* TABLA */
+.table-container {
+  overflow-x: auto;
+}
+
+.usuarios-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.usuarios-table th,
+.usuarios-table td {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  text-align: left;
+}
+
+.usuarios-table th {
+  background-color: #343a40;
+  color: white;
+}
+
+/* Estado */
+.activo {
+  color: #198754;
+  font-weight: bold;
+}
+
+.moroso {
+  color: #dc3545;
+  font-weight: bold;
+}

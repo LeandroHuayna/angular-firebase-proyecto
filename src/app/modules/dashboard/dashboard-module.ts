@@ -5,6 +5,7 @@ import { BienvenidaAdmin } from './bienvenida-admin/bienvenida-admin';
 import { CambiarRol } from './bienvenida-admin/cambiar-rol/cambiar-rol';
 import { DesactivarUsuario } from './bienvenida-admin/desactivar-usuario/desactivar-usuario';
 import { RouterModule } from '@angular/router';
+import { GestionarUsuarios } from './bienvenida-admin/gestionar-usuarios/gestionar-usuarios';
 
 
 
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
     BienvenidaUsuario,
     BienvenidaAdmin,
     CambiarRol,
-    DesactivarUsuario
+    DesactivarUsuario,
+    GestionarUsuarios
   ],
   imports: [
     CommonModule,

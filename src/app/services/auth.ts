@@ -8,15 +8,15 @@ import { Usuario } from './usuario';
 export class Auth {
 
   constructor(
-    private afAuth: AngularFireAuth, 
+    private afAuth: AngularFireAuth,
     private usuarioService: Usuario           // cambiamos una variable : Usuario ===> usuarioService
-  ) {}
+  ) { }
 
   async registrar(email: string, password: string) {
 
-      const cred = await this.afAuth.createUserWithEmailAndPassword(
-      
-      email, 
+    const cred = await this.afAuth.createUserWithEmailAndPassword(
+
+      email,
       password
     );
     const uid = cred.user?.uid || '';
@@ -24,15 +24,15 @@ export class Auth {
     await this.usuarioService.crearUsuario(uid, email); //puede pasar algo "iud"
     return cred;
   }
-  
-  login(email: string, password: string){
+
+  login(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password);   //libreria de verificacion y retorna a then.
   }
-  logout  () {
+  logout() {
     return this.afAuth.signOut();
   }
 
-  ObtenerUsuario (uid: string) {
+  ObtenerUsuario(uid: string) {
     return this.usuarioService.obtenerUsuario(uid);       // modificado
   }
 }

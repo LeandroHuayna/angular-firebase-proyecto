@@ -1,28 +1,50 @@
-<p>cargado registro</p>
 <div class="registrar-container">
-    <h2>Registro Usuario</h2>
-    <form (ngSubmit)="registrar()">
-        <div class="form-group">
-            <label for="email">Correo:</label>
-            <input 
-                type="email"
-                id="email"
-                name="email"
-                [(ngModel)]="email"
-                required
-            />
-        </div>
+  <div class="registrar-card">
+    <div class="registrar-header">
+      <h1>🏋️ GymManager</h1>
+      <p>Registro de nuevo usuario</p>
+    </div>
 
-        <div class="form-group">
-            <label for="password">Contraseña:</label>
-            <input 
-                type="password"
-                id="password"
-                name="password"
-                [(ngModel)]="password"
-                required
-            />
-        </div>
-        <button type="submit">Registrar</button>
+    <form (ngSubmit)="registrar()" #registerForm="ngForm">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          placeholder="usuario@gym.com"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          minlength="6"
+          placeholder="Mínimo 6 caracteres"
+        />
+      </div>
+
+      <!-- Rol oculto (por ahora) -->
+      <!-- Se puede setear como 'usuario' desde el TS -->
+      <button type="submit" [disabled]="registerForm.invalid">
+        Crear cuenta
+      </button>
     </form>
+
+    <div class="registrar-footer">
+      <p>¿Ya tienes una cuenta?</p>
+      <button class="link-button" (click)="irLogin()">
+        Iniciar sesión
+      </button>
+    </div>
+  </div>
 </div>

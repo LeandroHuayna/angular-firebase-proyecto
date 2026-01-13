@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class Registrar {
   email: string = '';
   password: string = '';
-  constructor(private authService: Auth) {}
+  constructor(private authService: Auth,private Router: Router) {}
   registrar() {
     this.authService
     .registrar(this.email, this.password)
@@ -21,5 +21,8 @@ export class Registrar {
     .catch((error) => {
       console.error('Error en registro', error);
     });
+  }
+  irLogin() {
+    this.Router.navigate(['/login']);
   }
 }

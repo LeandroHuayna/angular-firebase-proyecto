@@ -1,29 +1,48 @@
-<p>login cargado</p>
 <div class="login-container">
-    <h2>Inicio de sesión</h2>
-    <form (ngSubmit)="login()" #loginForm="ngForm">  
-        <div class="form-group">
-            <label for="email">Correo:</label>
-            <input
-                type="email"
-                id="email"
-                name="email"
-                [(ngModel)]="email"
-                required
-            />         
-        </div>
+  <div class="login-card">
+    <div class="login-header">
+      <h1>🏋️ GymManager</h1>
+      <p>Accede a tu cuenta</p>
+    </div>
 
-        <div class="form-group">
-            <label for="password">Contraseña:</label>
-            <input 
-                type="password" 
-                id="password" 
-                name="password" 
-                [(ngModel)]="password" 
-                required
-            />            
-        </div>
-        <button type="submit">Ingresar</button>
-        <button (click)="irRegistrar()">Registrar</button>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          placeholder="ejemplo@gym.com"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          placeholder="********"
+        />
+      </div>
+
+      <!-- Botón -->
+      <button type="submit" [disabled]="loginForm.invalid">
+        Ingresar
+      </button>
     </form>
+
+    <div class="login-footer">
+      <p>¿No tienes cuenta?</p>
+      <button class="link-button" (click)="irRegistrar()">
+        Registrarse
+      </button>
+    </div>
+  </div>
 </div>

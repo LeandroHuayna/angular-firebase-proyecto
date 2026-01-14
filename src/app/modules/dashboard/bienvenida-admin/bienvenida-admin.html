@@ -1,38 +1,51 @@
 <div class="admin-layout">
-<!-- Sidebar -->
-    <aside class="sidebar">
-        <h4 class="brand">Administrador</h4>
 
-        <nav>
-        <a routerLink="/admin/cambiar-rol" routerLinkActive="active">
-            <i class="bi bi-people"></i> Editar Roles de Usuarios
-        </a>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <i class="bi bi-barbell"></i>
+      <span>GYM Control</span>
+    </div>
 
-        <a routerLink="/admin/desactivar-usuario" routerLinkActive="active">
-            <i class="bi bi-person-check"></i> Desactivar Usuarios
-        </a>
+    <nav class="menu">
+      <a routerLink="/admin/cambiar-rol" routerLinkActive="active">
+        <i class="bi bi-people"></i>
+        <span>Editar roles</span>
+      </a>
 
-        <a routerLink="/admin/gestionar-usuarios" routerLinkActive="active">
-            <i class="bi bi-person-check"></i> Gestionar usuarios
-        </a>
+      <a routerLink="/admin/desactivar-usuario" routerLinkActive="active">
+        <i class="bi bi-person-x"></i>
+        <span>Desactivar usuarios</span>
+      </a>
 
-        <a routerLink="/admin/otra-opcion" routerLinkActive="active">
-            <i class="bi bi-gear"></i> Otra opción
-        </a>
-        </nav>
-    </aside>
+      <a routerLink="/admin/gestionar-usuarios" routerLinkActive="active">
+        <i class="bi bi-person-lines-fill"></i>
+        <span>Gestionar usuarios</span>
+      </a>
+    </nav>
 
-    <!-- Main content -->
-    <main class="main">
-        <header class="topbar">
-        <h3>Panel de Administración</h3>
-        <button class="btn btn-outline-danger btn-sm" (click)="cerrarSesion()">
-            Cerrar sesión
-        </button>
-        </header>
+    <!-- <footer class="sidebar-footer">
+      <small>© 2026 GYM Control</small>
+    </footer> -->
+  </aside>
 
-        <section class="content">
-        <router-outlet></router-outlet>
-        </section>
-    </main>
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <h2>Panel de Administración</h2>
+
+      <button class="logout-btn" (click)="cerrarSesion()">
+        <i class="bi bi-box-arrow-right"></i>
+        Cerrar sesión
+      </button>
+    </header>
+
+    <!-- Content -->
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+
+  </main>
 </div>

@@ -19,8 +19,8 @@ export class Login {
   login() {
     this.authService
       .login(this.email, this.password)
-      .then((cred) => {                           //resiva la verificacion de login del servicio auth
-        const uid = cred.user?.uid || '';               //muestra la uid
+      .then((cred) => {                           
+        const uid = cred.user?.uid || '';               
         debugger;
         this.authService.ObtenerUsuario(uid)
           .pipe(take(1))

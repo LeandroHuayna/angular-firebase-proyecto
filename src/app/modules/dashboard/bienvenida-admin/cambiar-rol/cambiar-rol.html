@@ -1,24 +1,28 @@
-<div class="container">
-  <h2>Cambiar Rol de Usuarios</h2>
-
-  <table class="tabla-usuarios">
-    <thead>
-      <tr>
-        <th>Nombre / Email</th>
-        <th>Rol Actual</th>
-        <th>Cambiar Rol</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let u of usuarios">
-        <td>{{ u.nombre || u.email }}</td>
-        <td>{{ u.rol }}</td>
-        <td>
-          <select [ngModel]="u.rol" (ngModelChange)="cambiarRol(u.uid, $event)">
-            <option *ngFor="let r of rolesDisponibles" [value]="r">{{ r }}</option>
-          </select>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<h2>Cambiar Rol</h2>
+<table cellpadding="5" cellspacing="0" border="1">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Rol</th>
+      <th>Accion</th>
+      <!-- <th>Acción</th>
+      <th>Activar/Desactivar</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td>{{ usuario.email }}</td>
+      <td>
+        <select [(ngModel)]="rolSeleccionado[usuario.uid]">
+          <option value="admin">Admin</option>
+          <option value="usuario">Usuario</option>
+          <!-- <option value="cliente">Cliente</option> -->
+        </select>
+      </td>
+     
+      <td>
+        <button (click)="cambiarRol(usuario.uid)">Actualizar Rol</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../../../services/usuario';
+import { UsuarioModelo } from '../../../../models/usuario.model';
 
 @Component({
   selector: 'app-cambiar-rol',
@@ -9,8 +10,8 @@ import { Usuario } from '../../../../services/usuario';
 })
 export class CambiarRol implements OnInit {
 
-  usuarios: any[] = [];
-  rolesDisponibles = ['usuario', 'admin'];
+  usuarios: UsuarioModelo[] = [];
+  rolSeleccionado: { [uid: string]: string } = {};
 
   constructor(private usuarioService: Usuario) {}
 
@@ -18,15 +19,26 @@ export class CambiarRol implements OnInit {
     this.cargarUsuarios();
   }
 
-  cargarUsuarios() {
-    this.usuarioService.obtenerUsuarios().subscribe((data: any[]) => {
-      this.usuarios = data;
+  cargarUsuarios(): void {
+    this.usuarioService.obtenerUsuarios().subscribe({
+      next: (usuarios: UsuarioModelo[]) => {
+        console.log('Usuarios recibidos:', usuarios);
+        this.usuarios = usuarios;
+
+        usuarios.forEach(usuario => {
+          if (usuario.uid) {
+            this.rolSeleccionado[usuario.uid] = usuario.rol;
+          }
+        });
+      },
+      error: (err) => {
+        console.error('Error Firestore:', err);
+      }
     });
   }
 
-  cambiarRol(uid: string, nuevoRol: string) {
-    this.usuarioService.cambiarRol(uid, nuevoRol)
-      .then(() => console.log(`Rol del usuario ${uid} actualizado a ${nuevoRol}`))
-      .catch(err => console.error(err));
+  cambiarRol(uid: string): void {
+    const rolNuevo = this.rolSeleccionado[uid];
+    this.usuarioService.cambiarRol(uid, rolNuevo);
   }
 }

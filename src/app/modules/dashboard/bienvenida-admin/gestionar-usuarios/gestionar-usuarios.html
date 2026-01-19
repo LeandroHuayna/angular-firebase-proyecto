@@ -4,24 +4,39 @@
 
   <!-- ➕ FORMULARIO AGREGAR USUARIO -->
   <div class="form-agregar-grid">
+
     <div class="form-group">
-      <label>Nombre completo</label>
-      <input type="text" [(ngModel)]="nuevoNombre" placeholder="Nombre">
+      <label for="nuevoNombre">Nombre completo</label>
+      <input
+        id="nuevoNombre"
+        type="text"
+        [(ngModel)]="nuevoNombre"
+        placeholder="Nombre completo">
     </div>
 
     <div class="form-group">
-      <label>Email</label>
-      <input type="email" [(ngModel)]="nuevoEmail" placeholder="Correo electrónico">
+      <label for="nuevoEmail">Email</label>
+      <input
+        id="nuevoEmail"
+        type="email"
+        [(ngModel)]="nuevoEmail"
+        placeholder="Correo electrónico">
     </div>
 
     <div class="form-group">
-      <label>Teléfono</label>
-      <input type="text" [(ngModel)]="nuevoTelefono" placeholder="Teléfono">
+      <label for="nuevoTelefono">Teléfono</label>
+      <input
+        id="nuevoTelefono"
+        type="text"
+        [(ngModel)]="nuevoTelefono"
+        placeholder="Teléfono">
     </div>
 
     <div class="form-group">
-      <label>Membresía</label>
-      <select [(ngModel)]="nuevoTipoMembresia">
+      <label for="nuevoTipoMembresia">Membresía</label>
+      <select
+        id="nuevoTipoMembresia"
+        [(ngModel)]="nuevoTipoMembresia">
         <option value="mensual">Mensual</option>
         <option value="trimestral">Trimestral</option>
         <option value="anual">Anual</option>
@@ -29,25 +44,38 @@
     </div>
 
     <div class="form-group">
-      <label>Fecha inicio</label>
-      <input type="date" [(ngModel)]="nuevoFechaInicio">
+      <label for="nuevoFechaInicio">Fecha inicio</label>
+      <input
+        id="nuevoFechaInicio"
+        type="date"
+        [(ngModel)]="nuevoFechaInicio">
     </div>
 
     <div class="form-group">
-      <label>Fecha vencimiento</label>
-      <input type="date" [(ngModel)]="nuevoFechaVencimiento">
+      <label for="nuevoFechaVencimiento">Fecha vencimiento</label>
+      <input
+        id="nuevoFechaVencimiento"
+        type="date"
+        [(ngModel)]="nuevoFechaVencimiento">
     </div>
 
     <div class="form-group">
-      <label>Estado</label>
-      <select [(ngModel)]="nuevoEstadoPago">
+      <label for="nuevoEstadoPago">Estado</label>
+      <select
+        id="nuevoEstadoPago"
+        [(ngModel)]="nuevoEstadoPago">
         <option value="activo">Activo</option>
         <option value="moroso">Moroso</option>
       </select>
     </div>
 
     <div class="form-group full-width">
-      <button class="btn agregar-btn" (click)="agregarUsuario()">Agregar Usuario</button>
+      <button
+        type="button"
+        class="btn agregar-btn"
+        (click)="agregarUsuario()">
+        Agregar Usuario
+      </button>
     </div>
   </div>
 
@@ -56,16 +84,17 @@
     <table class="usuarios-table">
       <thead>
         <tr>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Teléfono</th>
-          <th>Membresía</th>
-          <th>Inicio</th>
-          <th>Vencimiento</th>
-          <th>Estado</th>
-          <th>Acciones</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Membresía</th>
+          <th scope="col">Inicio</th>
+          <th scope="col">Vencimiento</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let u of usuarios">
           <td>{{ u.nombre }}</td>
@@ -75,12 +104,21 @@
           <td>{{ u.fecha_inicio | date:'yyyy-MM-dd' }}</td>
           <td>{{ u.fecha_vencimiento | date:'yyyy-MM-dd' }}</td>
           <td>
-            <span [class.activo]="u.estado_pago==='activo'" 
-                  [class.moroso]="u.estado_pago==='moroso'">
+            <span
+              class="estado"
+              [class.activo]="u.estado_pago === 'activo'"
+              [class.moroso]="u.estado_pago === 'moroso'">
               {{ u.estado_pago }}
             </span>
           </td>
-          <td><button class="btn editar-btn" (click)="editarUsuario(u)">Editar</button></td>
+          <td>
+            <button
+              type="button"
+              class="btn editar-btn"
+              (click)="editarUsuario(u)">
+              Editar
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -88,26 +126,38 @@
 
   <!-- FORMULARIO EDITAR USUARIO -->
   <div *ngIf="usuarioEditando" class="form-editar-grid">
+
     <h3>Editar Usuario</h3>
 
     <div class="form-group">
-      <label>Nombre completo</label>
-      <input type="text" [(ngModel)]="usuarioEditando.nombre">
+      <label for="editNombre">Nombre completo</label>
+      <input
+        id="editNombre"
+        type="text"
+        [(ngModel)]="usuarioEditando.nombre">
     </div>
 
     <div class="form-group">
-      <label>Email</label>
-      <input type="email" [(ngModel)]="usuarioEditando.email">
+      <label for="editEmail">Email</label>
+      <input
+        id="editEmail"
+        type="email"
+        [(ngModel)]="usuarioEditando.email">
     </div>
 
     <div class="form-group">
-      <label>Teléfono</label>
-      <input type="text" [(ngModel)]="usuarioEditando.telefono">
+      <label for="editTelefono">Teléfono</label>
+      <input
+        id="editTelefono"
+        type="text"
+        [(ngModel)]="usuarioEditando.telefono">
     </div>
 
     <div class="form-group">
-      <label>Membresía</label>
-      <select [(ngModel)]="usuarioEditando.tipo_membresia">
+      <label for="editMembresia">Membresía</label>
+      <select
+        id="editMembresia"
+        [(ngModel)]="usuarioEditando.tipo_membresia">
         <option value="mensual">Mensual</option>
         <option value="trimestral">Trimestral</option>
         <option value="anual">Anual</option>
@@ -115,26 +165,45 @@
     </div>
 
     <div class="form-group">
-      <label>Fecha inicio</label>
-      <input type="date" [(ngModel)]="usuarioEditando.fecha_inicio">
+      <label for="editInicio">Fecha inicio</label>
+      <input
+        id="editInicio"
+        type="date"
+        [(ngModel)]="usuarioEditando.fecha_inicio">
     </div>
 
     <div class="form-group">
-      <label>Fecha vencimiento</label>
-      <input type="date" [(ngModel)]="usuarioEditando.fecha_vencimiento">
+      <label for="editVencimiento">Fecha vencimiento</label>
+      <input
+        id="editVencimiento"
+        type="date"
+        [(ngModel)]="usuarioEditando.fecha_vencimiento">
     </div>
 
     <div class="form-group">
-      <label>Estado</label>
-      <select [(ngModel)]="usuarioEditando.estado_pago">
+      <label for="editEstado">Estado</label>
+      <select
+        id="editEstado"
+        [(ngModel)]="usuarioEditando.estado_pago">
         <option value="activo">Activo</option>
         <option value="moroso">Moroso</option>
       </select>
     </div>
 
     <div class="form-group full-width editar-buttons">
-      <button class="btn guardar-btn" (click)="guardarEdicion()">Guardar</button>
-      <button class="btn cancelar-btn" (click)="cancelarEdicion()">Cancelar</button>
+      <button
+        type="button"
+        class="btn guardar-btn"
+        (click)="guardarEdicion()">
+        Guardar
+      </button>
+
+      <button
+        type="button"
+        class="btn cancelar-btn"
+        (click)="cancelarEdicion()">
+        Cancelar
+      </button>
     </div>
 
   </div>

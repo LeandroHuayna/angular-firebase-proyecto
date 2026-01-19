@@ -13,7 +13,7 @@ export class GestionarUsuarios implements OnInit {
 
   usuarios: any[] = [];
 
-  // Formulario agregar usuario
+ 
   nuevoNombre = '';
   nuevoEmail = '';
   nuevoTelefono = '';
@@ -22,7 +22,7 @@ export class GestionarUsuarios implements OnInit {
   nuevoFechaVencimiento: string = '';
   nuevoEstadoPago = 'activo';
 
-  // Edición
+  
   usuarioEditando: any = null;
 
   constructor(private usuarioService: Usuario) {}

@@ -1,119 +1,184 @@
+/* CONTENEDOR GENERAL */
 .crud-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  padding: 24px;
+  background: #f4f6f9;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
+/* TITULOS */
 .title {
   text-align: center;
-  margin-bottom: 25px;
-  color: #343a40;
+  margin-bottom: 24px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #2c3e50;
 }
 
-/* FORMULARIOS CON GRID */
+/* ===== FORMULARIOS ===== */
 .form-agregar-grid,
 .form-editar-grid {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: 16px;
 }
 
+.form-editar-grid h3 {
+  grid-column: 1 / -1;
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+/* GRUPOS */
 .form-group {
   display: flex;
   flex-direction: column;
 }
 
-.form-group.full-width {
-  grid-column: 1 / -1;
+.form-group label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #555;
+  font-weight: 500;
 }
 
-/* Inputs y selects */
 .form-group input,
 .form-group select {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #dcdde1;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* Botones */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #3f8cff;
+  box-shadow: 0 0 0 2px rgba(63,140,255,0.15);
+}
+
+/* ANCHO COMPLETO */
+.full-width {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== BOTONES ===== */
 .btn {
-  padding: 8px 12px;
+  padding: 10px 18px;
+  border-radius: 8px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
 }
 
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* BOTONES ESPECÍFICOS */
 .agregar-btn {
-  background-color: #198754;
-  color: white;
-}
-
-.agregar-btn:hover {
-  background-color: #157347;
+  background: #3f8cff;
+  color: #fff;
 }
 
 .editar-btn {
-  background-color: #0d6efd;
-  color: white;
-}
-
-.editar-btn:hover {
-  background-color: #0b5ed7;
+  background: #f1c40f;
+  color: #2c3e50;
 }
 
 .guardar-btn {
-  background-color: #198754;
-  color: white;
-  margin-right: 10px;
-}
-
-.guardar-btn:hover {
-  background-color: #157347;
+  background: #2ecc71;
+  color: #fff;
 }
 
 .cancelar-btn {
-  background-color: #dc3545;
-  color: white;
+  background: #e74c3c;
+  color: #fff;
 }
 
-.cancelar-btn:hover {
-  background-color: #b02a37;
+.editar-buttons {
+  justify-content: center;
+  gap: 12px;
 }
 
-/* TABLA */
+/* ===== TABLA ===== */
 .table-container {
   overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .usuarios-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 900px;
+}
+
+.usuarios-table thead {
+  background: #3f8cff;
+  color: #fff;
 }
 
 .usuarios-table th,
 .usuarios-table td {
-  padding: 10px;
-  border: 1px solid #dee2e6;
+  padding: 12px 14px;
   text-align: left;
+  font-size: 14px;
 }
 
-.usuarios-table th {
-  background-color: #343a40;
-  color: white;
+.usuarios-table tbody tr {
+  border-bottom: 1px solid #eee;
 }
 
-/* Estado */
+.usuarios-table tbody tr:hover {
+  background: #f2f7ff;
+}
+
+/* ===== ESTADOS ===== */
 .activo {
-  color: #198754;
-  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #2ecc71;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
 .moroso {
-  color: #dc3545;
-  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .title {
+    font-size: 22px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .editar-buttons {
+    flex-direction: column;
+  }
 }
